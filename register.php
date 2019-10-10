@@ -21,6 +21,76 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#register").click(function () {
+
+                fname = $("#fname").val();
+                lname = $("#lname").val();
+                email = $("#email").val();
+                password = $("#password").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "adduser.php",
+                    data: "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password,
+                    success: function (html) {
+                        if (html == 'true') {
+
+                            $("#message-reg").html('<div class="alert alert-success"> \
+                                                 <strong>Account</strong> processed. \ \
+                                                 </div>');
+
+                            window.location.href = "index.php";
+
+                        } else if (html == 'false') {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>Email Address</strong> already in system. \ \
+                                                 </div>');                    
+
+                        } else if (html == 'fname') {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>First Name</strong> is required. \ \
+                                                 </div>');
+												 
+						} else if (html == 'lname') {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>Last Name</strong> is required. \ \
+                                                 </div>');
+
+                        } else if (html == 'eshort') {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>Email Address</strong> is required. \ \
+                                                 </div>');
+
+                        } else if (html == 'eformat') {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>Email Address</strong> format is not valid. \ \
+                                                 </div>');
+												 
+						} else if (html == 'pshort') {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>Password</strong> must be at least 4 characters . \ \
+                                                 </div>');
+
+                        } else {
+                            $("#message-reg").html('<div class="alert alert-danger"> \
+                                                 <strong>Error</strong> processing request. Please try again. \ \
+                                                 </div>');
+                        }
+                    },
+                    beforeSend: function () {
+                        $("#message-reg").html("<strong>loading...</strong>");
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -39,6 +109,7 @@
                     <h2 class="intro-text text-center">Registration
                         <strong>form</strong>
                     </h2>
+                    <div id="message-reg"></div>
                     <hr>
                     <form role="form">
                         <div class="row">
@@ -80,9 +151,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
