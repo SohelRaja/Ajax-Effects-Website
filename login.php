@@ -82,8 +82,8 @@
                     <h2 class="intro-text text-center">Login
                         <strong>form</strong>
                     </h2>
-                    <div id="message-log"></div>
                     <hr>
+                    <div id="message-log"></div>
                     <form role="form" method='POST' style='text-align: center;'>
                         <div class="row">
                             <div class="form-group col-lg-6">

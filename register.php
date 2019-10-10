@@ -110,25 +110,25 @@
                     <h2 class="intro-text text-center">Registration
                         <strong>form</strong>
                     </h2>
-                    <div id="message-reg"></div>
                     <hr>
+                    <div id="message-reg"></div>
                     <form role="form" method='POST'>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label>Fist Name</label>
-                                <input type="text" class="form-control" id='fname' name='fname' maxlength="25">
+                                <input type="text" class="form-control text-center" id='fname' name='fname' maxlength="25" autocomplete='off'>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" id='lname' name='lname' maxlength="25">
+                                <input type="text" class="form-control text-center" id='lname' name='lname' maxlength="25" autocomplete='off'>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" id='email' name='email' maxlength="25">
+                                <input type="email" class="form-control text-center" id='email' name='email' maxlength="35" autocomplete='off'>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Password</label>
-                                <input type="password" class="form-control" id='password' name='password' maxlength="10">
+                                <input type="password" class="form-control text-center" id='password' name='password' maxlength="10" autocomplete='off'>
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group col-lg-12 text-center">
