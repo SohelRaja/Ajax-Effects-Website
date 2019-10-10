@@ -34,7 +34,20 @@
 
     <div class="brand">Avengers House</div>
     <div class="address-bar">Avengers Assemble</div>
+    <?php	
+        if (isset($_GET["logout"])) {
+            
+            if ($_GET["logout"] == "true") { 
+    ?>
+                <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>You have been logged out of the system.</strong>
+                </div>   
 
+    <?php
+            }
+        }
+	?>
     <!-- Navigation -->
     <?php require_once 'nav.php'; ?>
 
