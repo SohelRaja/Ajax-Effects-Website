@@ -75,7 +75,7 @@
 												 
 						} else if (html == 'pshort') {
                             $("#message-reg").html('<div class="alert alert-danger"> \
-                                                 <strong>Password</strong> must be at least 4 characters . \ \
+                                                 <strong>Password</strong> must be at least 5 characters . \ \
                                                  </div>');
 
                         } else {
