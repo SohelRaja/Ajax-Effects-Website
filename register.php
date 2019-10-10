@@ -39,6 +39,7 @@
                     url: "adduser.php",
                     data: "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password,
                     success: function (html) {
+                        html = $.trim(html);
                         if (html == 'true') {
 
                             $("#message-reg").html('<div class="alert alert-success"> \
@@ -78,9 +79,9 @@
                                                  </div>');
 
                         } else {
-                            $("#message-reg").html('<div class="alert alert-danger"> \
-                                                 <strong>Error</strong> processing request. Please try again. \ \
-                                                 </div>');
+                             $("#message-reg").html('<div class="alert alert-danger"> \
+                                                    <strong>Error</strong> processing request. Please try again. \ \
+                                                     </div>');
                         }
                     },
                     beforeSend: function () {
@@ -111,7 +112,7 @@
                     </h2>
                     <div id="message-reg"></div>
                     <hr>
-                    <form role="form">
+                    <form role="form" method='POST'>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label>Fist Name</label>
