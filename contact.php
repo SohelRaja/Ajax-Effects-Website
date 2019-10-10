@@ -21,12 +21,85 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#contact").click(function () {
+
+                fname = $("#fname").val();
+                email = $("#email").val();
+                message = $("#message").val();
+
+                fname = $.trim(fname);
+                email = $.trim(email);
+                message = $.trim(message);
+
+                $.ajax({
+                    type: "POST",
+                    url: "sendmsg.php",
+                    data: "fname=" + fname + "&email=" + email + "&message=" + message,
+                    success: function (html) {
+                        html = $.trim(html);
+                        if (html == 'true') {
+
+                            $("#message-con").html('<div class="alert alert-success"> \
+                                                 <strong>Message Sent!</strong> \ \
+                                                 </div>');
+
+                        } else if (html == 'fname_long') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>First Name</strong> must cannot exceed 50 characters. \ \
+                                                 </div>');
+						
+						} else if (html == 'fname_short') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>First Name</strong> must exceed 2 characters. \ \
+                                                 </div>');
+												 
+						} else if (html == 'email_long') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>Email</strong> must cannot exceed 50 characters. \ \
+                                                 </div>');
+						
+						} else if (html == 'email_short') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>Email</strong> must exceed 2 characters. \ \
+                                                 </div>');
+												 
+						} else if (html == 'eformat') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>Email</strong> format incorrect. \ \
+                                                 </div>');
+												 
+						} else if (html == 'message_long') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>Message</strong> must cannot exceed 50 characters. \ \
+                                                 </div>');
+						
+						} else if (html == 'message_short') {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>Message</strong> must exceed 2 characters. \ \
+                                                 </div>');
+
+
+                        } else {
+                            $("#message-con").html('<div class="alert alert-danger"> \
+                                                 <strong>Error</strong> processing request. Please try again. \ \
+                                                 </div>');
+                        }
+                    },
+                    beforeSend: function () {
+                        $("#message-con").html("<strong>loading...</strong>");
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 
 </head>
 
@@ -76,29 +149,24 @@
                         <strong>form</strong>
                     </h2>
                     <hr>
-                    <p>You are an Avenger now kid.</p>
+                    <div id="message-con"></div>
                     <form role="form">
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <label>Name</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name='fname' id='fname' maxlength='25'>
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control">
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label>Phone Number</label>
-                                <input type="tel" class="form-control">
+                                <input type="email" class="form-control" name='email' id='email' maxlength='25'>
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group col-lg-12">
                                 <label>Message</label>
-                                <textarea class="form-control" rows="6"></textarea>
+                                <textarea class="form-control" rows="6" name='message' id='message' maxlength='255'></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <input type="hidden" name="save" value="contact">
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-default" id='contact'>Submit</button>
                             </div>
                         </div>
                     </form>
@@ -118,9 +186,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
