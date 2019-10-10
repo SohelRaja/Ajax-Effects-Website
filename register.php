@@ -136,6 +136,9 @@
                             </div>
                         </div>
                     </form>
+                    <div class="form-group col-lg-12 text-center">
+						<a href="login.php">Already an Avenger? Click here</a>
+					</div>
                 </div>
             </div>
         </div>
