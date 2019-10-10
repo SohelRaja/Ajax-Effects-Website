@@ -158,7 +158,7 @@
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" name='email' id='email' maxlength='25'>
+                                <input type="email" class="form-control" name='email' id='email' maxlength='35'>
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group col-lg-12">
